@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADLINE Outdoor — Наружная реклама</title>
+  <style>
+    :root {
+      --bg: #07120f;
+      --bg2: #0d1f1a;
+      --card: #102820;
+      --card2: #14352b;
+      --text: #f2fff8;
+      --muted: #9fb8ad;
+      --green: #22c55e;
+      --lime: #a3e635;
+      --orange: #f97316;
+      --border: rgba(255,255,255,.12);
+      --shadow: 0 25px 80px rgba(0,0,0,.35);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: radial-gradient(circle at top left, #143f30 0%, var(--bg) 42%, #050807 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(7, 18, 15, .72);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .4px;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--green), var(--lime));
+      color: #062015;
+      box-shadow: 0 12px 40px rgba(34,197,94,.25);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .lang-btn {
+      border: 0;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--green), var(--lime));
+      color: #06170f;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green), var(--lime));
+      color: #06170f;
+      box-shadow: 0 15px 40px rgba(34,197,94,.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 50px rgba(34,197,94,.35);
+    }
+
+    .btn-secondary {
+      border-color: var(--border);
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.08);
+    }
+
+    .hero {
+      padding: 84px 0 54px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: .95;
+      letter-spacing: -2.5px;
+      margin-bottom: 24px;
+    }
+
+    .accent {
+      color: var(--lime);
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 620px;
+    }
+
+    .mini-stat {
+      padding: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    .mini-stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .billboard-card {
+      position: relative;
+      min-height: 480px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: linear-gradient(160deg, #14231e, #08100d);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .sky-glow {
+      position: absolute;
+      inset: -30% -20% auto auto;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(163,230,53,.42), transparent 62%);
+      filter: blur(10px);
+    }
+
+    .mock-city {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(0,0,0,.65), transparent 55%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 2px, transparent 2px 62px);
+      opacity: .7;
+    }
+
+    .mock-board {
+      position: absolute;
+      top: 72px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 78%;
+      height: 190px;
+      padding: 18px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #f8ffea, #d8ff77);
+      color: #06170f;
+      box-shadow: 0 20px 70px rgba(163,230,53,.22);
+    }
+
+    .mock-board small {
+      font-weight: 800;
+      opacity: .65;
+    }
+
+    .mock-board h2 {
+      margin-top: 18px;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    .mock-board p {
+      margin-top: 10px;
+      color: #23402f;
+      font-size: 14px;
+    }
+
+    .pole {
+      position: absolute;
+      top: 262px;
+      left: 50%;
+      width: 22px;
+      height: 170px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #263b32, #778a7f, #263b32);
+      border-radius: 10px;
+    }
+
+    .road {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 110px;
+      background: linear-gradient(180deg, #111, #050505);
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+
+    .road::after {
+      content: "";
+      position: absolute;
+      top: 45px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: repeating-linear-gradient(90deg, rgba(255,255,255,.55) 0 48px, transparent 48px 90px);
+    }
+
+    section {
+      padding: 58px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1;
+      letter-spacing: -1.2px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 460px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .services {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.16);
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.25);
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .portfolio {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .work {
+      min-height: 260px;
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.65)),
+        linear-gradient(135deg, #1a3d31, #0c1613);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .work::before {
+      content: "";
+      position: absolute;
+      top: 34px;
+      left: 18px;
+      right: 18px;
+      height: 100px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(163,230,53,.95), rgba(34,197,94,.95));
+      box-shadow: 0 20px 55px rgba(34,197,94,.16);
+    }
+
+    .work:nth-child(2)::before {
+      background: linear-gradient(135deg, #f97316, #facc15);
+    }
+
+    .work:nth-child(3)::before {
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+    }
+
+    .work-tag {
+      position: relative;
+      z-index: 1;
+      align-self: flex-start;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.36);
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: 12px;
+      color: #eafff2;
+    }
+
+    .work-info {
+      position: relative;
+      z-index: 1;
+    }
+
+    .work-info h3 {
+      font-size: 21px;
+      margin-bottom: 4px;
+    }
+
+    .work-info p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+      counter-reset: step;
+    }
+
+    .step {
+      counter-increment: step;
+      position: relative;
+    }
+
+    .step::before {
+      content: "0" counter(step);
+      display: inline-flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: rgba(163,230,53,.12);
+      border: 1px solid rgba(163,230,53,.25);
+      color: var(--lime);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .calculator-wrap {
+      display: grid;
+      grid-template-columns: 1fr .75fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline: none;
+    }
+
+    select:focus, input:focus {
+      border-color: rgba(163,230,53,.55);
+    }
+
+    .result-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(135deg, rgba(34,197,94,.14), rgba(249,115,22,.08));
+    }
+
+    .price {
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1;
+      letter-spacing: -1.8px;
+      font-weight: 900;
+      margin: 14px 0;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .contact-item {
+      padding: 15px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--text);
+    }
+
+    .simple-form textarea {
+      min-height: 130px;
+      resize: vertical;
+      width: 100%;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline: none;
+      font-family: inherit;
+    }
+
+    .simple-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #22c55e, #a3e635);
+      color: #06170f;
+      font-weight: 900;
+      box-shadow: 0 20px 60px rgba(34,197,94,.35);
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .calculator-wrap,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .services,
+      .portfolio,
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        padding-top: 54px;
+      }
+
+      .mini-stats,
+      .services,
+      .portfolio,
+      .steps,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .billboard-card {
+        min-height: 420px;
+      }
+
+      .mock-board {
+        width: 86%;
+        height: 170px;
+      }
+
+      .mock-board h2 {
+        font-size: 27px;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 12px;
+      }
+
+      .nav-actions .btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#top" aria-label="На главную" data-i18n-aria="logoAria">
+        <span class="logo-mark">A</span>
+        <span>ADLINE Outdoor</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Навигация" data-i18n-aria="navAria">
+        <a href="#services" data-i18n="navServices">Услуги</a>
+        <a href="#portfolio" data-i18n="navPortfolio">Работы</a>
+        <a href="#price" data-i18n="navPrice">Расчёт</a>
+        <a href="#contact" data-i18n="navContact">Контакты</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-switch" aria-label="Выбор языка" data-i18n-aria="langAria">
+          <button class="lang-btn active" type="button" data-lang="ru">RU</button>
+          <button class="lang-btn" type="button" data-lang="kz">KZ</button>
+        </div>
+        <a class="btn btn-primary" id="navWhatsapp" href="https://wa.me/77000000000?text=Здравствуйте%2C%20хочу%20заказать%20наружную%20рекламу" target="_blank">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="container hero">
+      <div>
+        <div class="badge" data-i18n="heroBadge">⚡ Наружная реклама без лишних затрат</div>
+        <h1><span data-i18n="heroTitle1">Реклама, которую</span> <span class="accent" data-i18n="heroTitleAccent">замечают</span> <span data-i18n="heroTitle2">в городе</span></h1>
+        <p data-i18n="heroText">
+          Делаем баннеры, вывески, билборды, LED-рекламу и монтаж под ключ.
+          Подберём формат под ваш бюджет и покажем примерный расчёт за 1 минуту.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#price" data-i18n="heroCalcBtn">Рассчитать стоимость</a>
+          <a class="btn btn-secondary" href="#portfolio" data-i18n="heroWorksBtn">Посмотреть работы</a>
+        </div>
+
+        <div class="mini-stats">
+          <div class="mini-stat">
+            <strong>24/7</strong>
+            <span data-i18n="stat1">реклама работает всегда</span>
+          </div>
+          <div class="mini-stat">
+            <strong>0₸</strong>
+            <span data-i18n="stat2">консультация</span>
+          </div>
+          <div class="mini-stat">
+            <strong>1 <span data-i18n="dayWord">день</span></strong>
+            <span data-i18n="stat3">быстрый старт макета</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="billboard-card" aria-label="Макет билборда" data-i18n-aria="billboardAria">
+        <div class="sky-glow"></div>
+        <div class="mock-city"></div>
+        <div class="mock-board">
+          <small data-i18n="mockSmall">ВАША РЕКЛАМА ЗДЕСЬ</small>
+          <h2><span data-i18n="mockTitle1">Большой охват.</span><br><span data-i18n="mockTitle2">Яркий дизайн.</span></h2>
+          <p data-i18n="mockText">Билборды, баннеры, вывески, LED-экраны</p>
+        </div>
+        <div class="pole"></div>
+        <div class="road"></div>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="servicesTitle">Что мы делаем</h2>
+          <p data-i18n="servicesText">Оставили только самые понятные услуги, которые реально нужны бизнесу.</p>
+        </div>
+
+        <div class="grid services">
+          <article class="card">
+            <div class="card-icon">🏙️</div>
+            <h3 data-i18n="service1Title">Билборды</h3>
+            <p data-i18n="service1Text">Размещение рекламы на заметных местах города для сильного визуального эффекта.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🪧</div>
+            <h3 data-i18n="service2Title">Баннеры</h3>
+            <p data-i18n="service2Text">Печать баннеров для фасадов, заборов, мероприятий и точек продаж.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">💡</div>
+            <h3 data-i18n="service3Title">Вывески</h3>
+            <p data-i18n="service3Text">Разработка и монтаж вывесок для магазинов, кафе, офисов и салонов.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">📺</div>
+            <h3 data-i18n="service4Title">LED-экраны</h3>
+            <p data-i18n="service4Text">Реклама на цифровых экранах для быстрых акций и ярких объявлений.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🚗</div>
+            <h3 data-i18n="service5Title">Оклейка авто</h3>
+            <p data-i18n="service5Text">Брендирование автомобилей, чтобы реклама двигалась вместе с вашим бизнесом.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🛠️</div>
+            <h3 data-i18n="service6Title">Монтаж</h3>
+            <p data-i18n="service6Text">Установка, замена баннеров и фотоотчёт после завершения работы.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="portfolioTitle">Примеры работ</h2>
+          <p data-i18n="portfolioText">Пока нет реальных фото? Можно заменить эти блоки своими снимками или mockup-примерами.</p>
+        </div>
+
+        <div class="grid portfolio">
+          <article class="work">
+            <span class="work-tag" data-i18n="work1Tag">Билборд</span>
+            <div class="work-info">
+              <h3 data-i18n="work1Title">Реклама кофейни</h3>
+              <p data-i18n="work1Text">Задача: привлечь людей рядом с торговым центром.</p>
+            </div>
+          </article>
+          <article class="work">
+            <span class="work-tag" data-i18n="work2Tag">Вывеска</span>
+            <div class="work-info">
+              <h3 data-i18n="work2Title">Фасад магазина</h3>
+              <p data-i18n="work2Text">Задача: сделать точку заметнее вечером.</p>
+            </div>
+          </article>
+          <article class="work">
+            <span class="work-tag" data-i18n="work3Tag">Баннер</span>
+            <div class="work-info">
+              <h3 data-i18n="work3Title">Открытие салона</h3>
+              <p data-i18n="work3Text">Задача: быстро запустить рекламу к открытию.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="stepsTitle">Как проходит работа</h2>
+          <p data-i18n="stepsText">Простой процесс без сложных слов и лишней бюрократии.</p>
+        </div>
+
+        <div class="grid steps">
+          <article class="card step">
+            <h3 data-i18n="step1Title">Заявка</h3>
+            <p data-i18n="step1Text">Вы пишете нам, какой формат рекламы нужен и какой есть бюджет.</p>
+          </article>
+          <article class="card step">
+            <h3 data-i18n="step2Title">Подбор</h3>
+            <p data-i18n="step2Text">Мы предлагаем формат, размер, место или вариант размещения.</p>
+          </article>
+          <article class="card step">
+            <h3 data-i18n="step3Title">Макет</h3>
+            <p data-i18n="step3Text">Готовим простой дизайн или адаптируем ваш готовый файл.</p>
+          </article>
+          <article class="card step">
+            <h3 data-i18n="step4Title">Монтаж</h3>
+            <p data-i18n="step4Text">Печатаем, устанавливаем и отправляем фотоотчёт клиенту.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="price">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="priceTitle">Быстрый расчёт</h2>
+          <p data-i18n="priceText">Это примерная цена. Точную стоимость лучше уточнить в WhatsApp.</p>
+        </div>
+
+        <div class="calculator-wrap">
+          <div class="card">
+            <div class="form-grid">
+              <label>
+                <span data-i18n="calcAdType">Тип рекламы</span>
+                <select id="adType">
+                  <option value="15000" data-ru="Баннер" data-kz="Баннер">Баннер</option>
+                  <option value="35000" data-ru="Вывеска" data-kz="Маңдайша">Вывеска</option>
+                  <option value="60000" data-ru="Билборд" data-kz="Билборд">Билборд</option>
+                  <option value="45000" data-ru="LED-экран" data-kz="LED-экран">LED-экран</option>
+                  <option value="30000" data-ru="Оклейка авто" data-kz="Автокөлік брендтеу">Оклейка авто</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="calcSize">Размер / сложность</span>
+                <select id="size">
+                  <option value="1" data-ru="Маленький" data-kz="Шағын">Маленький</option>
+                  <option value="1.5" data-ru="Средний" data-kz="Орташа">Средний</option>
+                  <option value="2.2" data-ru="Большой" data-kz="Үлкен">Большой</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="calcDesign">Дизайн-макет</span>
+                <select id="design">
+                  <option value="0" data-ru="У клиента есть готовый" data-kz="Клиентте дайын макет бар">У клиента есть готовый</option>
+                  <option value="8000" data-ru="Нужен простой дизайн" data-kz="Қарапайым дизайн керек">Нужен простой дизайн</option>
+                  <option value="15000" data-ru="Нужен сильный дизайн" data-kz="Күшті дизайн керек">Нужен сильный дизайн</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="calcInstall">Монтаж</span>
+                <select id="install">
+                  <option value="0" data-ru="Не нужен" data-kz="Керек емес">Не нужен</option>
+                  <option value="12000" data-ru="Нужен монтаж" data-kz="Монтаж керек">Нужен монтаж</option>
+                  <option value="25000" data-ru="Сложный монтаж" data-kz="Күрделі монтаж">Сложный монтаж</option>
+                </select>
+              </label>
+
+              <label>
+                <span data-i18n="calcDismantling">Демонтаж</span>
+                <select id="dismantling">
+                  <option value="0" data-ru="Не нужен" data-kz="Керек емес">Не нужен</option>
+                  <option value="10000" data-ru="Снять старую рекламу" data-kz="Ескі жарнаманы алу">Снять старую рекламу</option>
+                  <option value="20000" data-ru="Сложный демонтаж" data-kz="Күрделі демонтаж">Сложный демонтаж</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="card result-box">
+            <div>
+              <p class="note" data-i18n="priceFrom">Примерная стоимость от</p>
+              <div class="price" id="priceResult">0 ₸</div>
+              <p class="note" data-i18n="priceNote">Цена зависит от города, материала, срока размещения и места установки.</p>
+            </div>
+            <a class="btn btn-primary" id="whatsappCalc" href="https://wa.me/77000000000" target="_blank" data-i18n="priceWhatsapp">Отправить расчёт в WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact">
+        <div class="card">
+          <h2 data-i18n="contactTitle">Оставить заявку</h2>
+          <p class="note" data-i18n="contactText">Для бюджета 0₸ лучше принимать заявки через WhatsApp или Google Forms.</p>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <strong>WhatsApp</strong>
+              +7 700 000 00 00
+            </div>
+            <div class="contact-item">
+              <strong data-i18n="cityLabel">Город</strong>
+              <span data-i18n="cityValue">Алматы / ваш город</span>
+            </div>
+            <div class="contact-item">
+              <strong data-i18n="scheduleLabel">График</strong>
+              <span data-i18n="scheduleValue">Каждый день, 09:00–20:00</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="card simple-form" onsubmit="sendMessage(event)">
+          <label>
+            <span data-i18n="formName">Ваше имя</span>
+            <input id="name" type="text" placeholder="Например: Али" data-placeholder-ru="Например: Али" data-placeholder-kz="Мысалы: Әли" required />
+          </label>
+          <label>
+            <span data-i18n="formPhone">Телефон</span>
+            <input id="phone" type="tel" placeholder="+7 700 000 00 00" required />
+          </label>
+          <label>
+            <span data-i18n="formMessage">Что нужно сделать?</span>
+            <textarea id="message" placeholder="Например: нужен баннер для кафе 3x2 метра" data-placeholder-ru="Например: нужен баннер для кафе 3x2 метра" data-placeholder-kz="Мысалы: кафе үшін 3x2 метр баннер керек"></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit" data-i18n="formSend">Отправить в WhatsApp</button>
+          <p class="note" data-i18n="formNote">Кнопка откроет WhatsApp с готовым текстом заявки.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span data-i18n="footer1">© 2026 ADLINE Outdoor. Наружная реклама.</span>
+      <span data-i18n="footer2">Бесплатный сайт на HTML/CSS/JS для GitHub Pages.</span>
+    </div>
+  </footer>
+
+  <a class="floating-whatsapp" id="floatingWhatsapp" href="https://wa.me/77000000000?text=Здравствуйте%2C%20хочу%20заказать%20наружную%20рекламу" target="_blank" aria-label="Написать в WhatsApp" data-i18n-aria="floatingAria">WA</a>
+
+  <script>
+    const adType = document.getElementById('adType');
+    const size = document.getElementById('size');
+    const design = document.getElementById('design');
+    const install = document.getElementById('install');
+    const dismantling = document.getElementById('dismantling');
+    const priceResult = document.getElementById('priceResult');
+    const whatsappCalc = document.getElementById('whatsappCalc');
+    const navWhatsapp = document.getElementById('navWhatsapp');
+    const floatingWhatsapp = document.getElementById('floatingWhatsapp');
+    const langButtons = document.querySelectorAll('.lang-btn');
+
+    const phoneNumber = '77000000000';
+    let currentLang = 'ru';
+
+    const translations = {
+      ru: {
+        pageTitle: 'ADLINE Outdoor — Наружная реклама',
+        logoAria: 'На главную',
+        navAria: 'Навигация',
+        langAria: 'Выбор языка',
+        billboardAria: 'Макет билборда',
+        floatingAria: 'Написать в WhatsApp',
+        navServices: 'Услуги',
+        navPortfolio: 'Работы',
+        navPrice: 'Расчёт',
+        navContact: 'Контакты',
+        heroBadge: '⚡ Наружная реклама без лишних затрат',
+        heroTitle1: 'Реклама, которую',
+        heroTitleAccent: 'замечают',
+        heroTitle2: 'в городе',
+        heroText: 'Делаем баннеры, вывески, билборды, LED-рекламу и монтаж под ключ. Подберём формат под ваш бюджет и покажем примерный расчёт за 1 минуту.',
+        heroCalcBtn: 'Рассчитать стоимость',
+        heroWorksBtn: 'Посмотреть работы',
+        stat1: 'реклама работает всегда',
+        stat2: 'консультация',
+        dayWord: 'день',
+        stat3: 'быстрый старт макета',
+        mockSmall: 'ВАША РЕКЛАМА ЗДЕСЬ',
+        mockTitle1: 'Большой охват.',
+        mockTitle2: 'Яркий дизайн.',
+        mockText: 'Билборды, баннеры, вывески, LED-экраны',
+        servicesTitle: 'Что мы делаем',
+        servicesText: 'Оставили только самые понятные услуги, которые реально нужны бизнесу.',
+        service1Title: 'Билборды',
+        service1Text: 'Размещение рекламы на заметных местах города для сильного визуального эффекта.',
+        service2Title: 'Баннеры',
+        service2Text: 'Печать баннеров для фасадов, заборов, мероприятий и точек продаж.',
+        service3Title: 'Вывески',
+        service3Text: 'Разработка и монтаж вывесок для магазинов, кафе, офисов и салонов.',
+        service4Title: 'LED-экраны',
+        service4Text: 'Реклама на цифровых экранах для быстрых акций и ярких объявлений.',
+        service5Title: 'Оклейка авто',
+        service5Text: 'Брендирование автомобилей, чтобы реклама двигалась вместе с вашим бизнесом.',
+        service6Title: 'Монтаж',
+        service6Text: 'Установка, замена баннеров и фотоотчёт после завершения работы.',
+        portfolioTitle: 'Примеры работ',
+        portfolioText: 'Пока нет реальных фото? Можно заменить эти блоки своими снимками или mockup-примерами.',
+        work1Tag: 'Билборд',
+        work1Title: 'Реклама кофейни',
+        work1Text: 'Задача: привлечь людей рядом с торговым центром.',
+        work2Tag: 'Вывеска',
+        work2Title: 'Фасад магазина',
+        work2Text: 'Задача: сделать точку заметнее вечером.',
+        work3Tag: 'Баннер',
+        work3Title: 'Открытие салона',
+        work3Text: 'Задача: быстро запустить рекламу к открытию.',
+        stepsTitle: 'Как проходит работа',
+        stepsText: 'Простой процесс без сложных слов и лишней бюрократии.',
+        step1Title: 'Заявка',
+        step1Text: 'Вы пишете нам, какой формат рекламы нужен и какой есть бюджет.',
+        step2Title: 'Подбор',
+        step2Text: 'Мы предлагаем формат, размер, место или вариант размещения.',
+        step3Title: 'Макет',
+        step3Text: 'Готовим простой дизайн или адаптируем ваш готовый файл.',
+        step4Title: 'Монтаж',
+        step4Text: 'Печатаем, устанавливаем и отправляем фотоотчёт клиенту.',
+        priceTitle: 'Быстрый расчёт',
+        priceText: 'Это примерная цена. Точную стоимость лучше уточнить в WhatsApp.',
+        calcAdType: 'Тип рекламы',
+        calcSize: 'Размер / сложность',
+        calcDesign: 'Дизайн-макет',
+        calcInstall: 'Монтаж',
+        calcDismantling: 'Демонтаж',
+        priceFrom: 'Примерная стоимость от',
+        priceNote: 'Цена зависит от города, материала, срока размещения и места установки.',
+        priceWhatsapp: 'Отправить расчёт в WhatsApp',
+        contactTitle: 'Оставить заявку',
+        contactText: 'Для бюджета 0₸ лучше принимать заявки через WhatsApp или Google Forms.',
+        cityLabel: 'Город',
+        cityValue: 'Алматы / ваш город',
+        scheduleLabel: 'График',
+        scheduleValue: 'Каждый день, 09:00–20:00',
+        formName: 'Ваше имя',
+        formPhone: 'Телефон',
+        formMessage: 'Что нужно сделать?',
+        formSend: 'Отправить в WhatsApp',
+        formNote: 'Кнопка откроет WhatsApp с готовым текстом заявки.',
+        footer1: '© 2026 ADLINE Outdoor. Наружная реклама.',
+        footer2: 'Бесплатный сайт на HTML/CSS/JS для GitHub Pages.',
+        helloOrder: 'Здравствуйте, хочу заказать наружную рекламу',
+        calcIntro: 'Здравствуйте, хочу рассчитать наружную рекламу.',
+        calcType: 'Тип',
+        calcSizeMsg: 'Размер',
+        calcDesignMsg: 'Дизайн',
+        calcInstallMsg: 'Монтаж',
+        calcDismantlingMsg: 'Демонтаж',
+        calcTotal: 'Примерная цена',
+        formIntro: 'Здравствуйте, меня зовут',
+        formPhoneMsg: 'Телефон',
+        formRequest: 'Заявка',
+        formDefaultMessage: 'Хочу заказать наружную рекламу.'
+      },
+      kz: {
+        pageTitle: 'ADLINE Outdoor — Сыртқы жарнама',
+        logoAria: 'Басты бетке',
+        navAria: 'Навигация',
+        langAria: 'Тілді таңдау',
+        billboardAria: 'Билборд макеті',
+        floatingAria: 'WhatsApp-қа жазу',
+        navServices: 'Қызметтер',
+        navPortfolio: 'Жұмыстар',
+        navPrice: 'Есептеу',
+        navContact: 'Байланыс',
+        heroBadge: '⚡ Артық шығынсыз сыртқы жарнама',
+        heroTitle1: 'Қалада',
+        heroTitleAccent: 'көзге түсетін',
+        heroTitle2: 'жарнама',
+        heroText: 'Баннер, маңдайша, билборд, LED-жарнама және монтажды толық жасаймыз. Бюджетіңізге сай формат таңдап, шамамен бағаны 1 минутта көрсетеміз.',
+        heroCalcBtn: 'Бағаны есептеу',
+        heroWorksBtn: 'Жұмыстарды көру',
+        stat1: 'жарнама әрдайым жұмыс істейді',
+        stat2: 'кеңес беру',
+        dayWord: 'күн',
+        stat3: 'макетті жылдам бастау',
+        mockSmall: 'СІЗДІҢ ЖАРНАМАҢЫЗ ОСЫНДА',
+        mockTitle1: 'Үлкен қамту.',
+        mockTitle2: 'Жарқын дизайн.',
+        mockText: 'Билбордтар, баннерлер, маңдайшалар, LED-экрандар',
+        servicesTitle: 'Біз не істейміз',
+        servicesText: 'Бизнеске шынымен керек ең түсінікті қызметтерді қалдырдық.',
+        service1Title: 'Билбордтар',
+        service1Text: 'Қаладағы көзге түсетін орындарға жарнама орналастырамыз.',
+        service2Title: 'Баннерлер',
+        service2Text: 'Фасад, қоршау, іс-шара және сату нүктелері үшін баннер басып шығарамыз.',
+        service3Title: 'Маңдайшалар',
+        service3Text: 'Дүкен, кафе, офис және салондарға маңдайша жасап, орнатамыз.',
+        service4Title: 'LED-экрандар',
+        service4Text: 'Акциялар мен хабарландыруларға арналған цифрлық экрандағы жарнама.',
+        service5Title: 'Автокөлік брендтеу',
+        service5Text: 'Жарнамаңыз бизнесіңізбен бірге қозғалу үшін көлікті брендтейміз.',
+        service6Title: 'Монтаж',
+        service6Text: 'Орнату, баннер ауыстыру және жұмыс соңында фотоесеп жіберу.',
+        portfolioTitle: 'Жұмыс үлгілері',
+        portfolioText: 'Әзірге нақты фото жоқ болса, бұл блоктарды өз суреттеріңізге немесе mockup-тарға ауыстыруға болады.',
+        work1Tag: 'Билборд',
+        work1Title: 'Кофехана жарнамасы',
+        work1Text: 'Мақсат: сауда орталығы жанындағы адамдарды тарту.',
+        work2Tag: 'Маңдайша',
+        work2Title: 'Дүкен фасады',
+        work2Text: 'Мақсат: нүктені кешкі уақытта да көзге түсіру.',
+        work3Tag: 'Баннер',
+        work3Title: 'Салон ашылуы',
+        work3Text: 'Мақсат: ашылу күніне жарнаманы тез іске қосу.',
+        stepsTitle: 'Жұмыс қалай өтеді',
+        stepsText: 'Күрделі сөздер мен артық қағазсыз қарапайым процесс.',
+        step1Title: 'Өтінім',
+        step1Text: 'Қандай жарнама керек екенін және бюджетіңізді жазасыз.',
+        step2Title: 'Таңдау',
+        step2Text: 'Біз формат, өлшем, орын немесе орналастыру нұсқасын ұсынамыз.',
+        step3Title: 'Макет',
+        step3Text: 'Қарапайым дизайн жасаймыз немесе дайын файлыңызды бейімдейміз.',
+        step4Title: 'Монтаж',
+        step4Text: 'Басып шығарамыз, орнатамыз және клиентке фотоесеп жібереміз.',
+        priceTitle: 'Жылдам есептеу',
+        priceText: 'Бұл шамамен баға. Нақты құнын WhatsApp арқылы нақтылаған дұрыс.',
+        calcAdType: 'Жарнама түрі',
+        calcSize: 'Өлшем / күрделілік',
+        calcDesign: 'Дизайн-макет',
+        calcInstall: 'Монтаж',
+        calcDismantling: 'Демонтаж',
+        priceFrom: 'Шамамен бағасы',
+        priceNote: 'Баға қалаға, материалға, орналастыру мерзіміне және орнату орнына байланысты.',
+        priceWhatsapp: 'Есепті WhatsApp-қа жіберу',
+        contactTitle: 'Өтінім қалдыру',
+        contactText: '0₸ бюджет үшін өтінімдерді WhatsApp немесе Google Forms арқылы қабылдаған дұрыс.',
+        cityLabel: 'Қала',
+        cityValue: 'Алматы / сіздің қалаңыз',
+        scheduleLabel: 'Жұмыс уақыты',
+        scheduleValue: 'Күн сайын, 09:00–20:00',
+        formName: 'Атыңыз',
+        formPhone: 'Телефон',
+        formMessage: 'Не жасау керек?',
+        formSend: 'WhatsApp-қа жіберу',
+        formNote: 'Батырма WhatsApp-та дайын өтінім мәтінін ашады.',
+        footer1: '© 2026 ADLINE Outdoor. Сыртқы жарнама.',
+        footer2: 'GitHub Pages үшін HTML/CSS/JS негізіндегі тегін сайт.',
+        helloOrder: 'Сәлеметсіз бе, сыртқы жарнамаға тапсырыс бергім келеді',
+        calcIntro: 'Сәлеметсіз бе, сыртқы жарнаманың бағасын есептегім келеді.',
+        calcType: 'Түрі',
+        calcSizeMsg: 'Өлшемі',
+        calcDesignMsg: 'Дизайн',
+        calcInstallMsg: 'Монтаж',
+        calcDismantlingMsg: 'Демонтаж',
+        calcTotal: 'Шамамен бағасы',
+        formIntro: 'Сәлеметсіз бе, менің атым',
+        formPhoneMsg: 'Телефон',
+        formRequest: 'Өтінім',
+        formDefaultMessage: 'Сыртқы жарнамаға тапсырыс бергім келеді.'
+      }
+    };
+
+    function formatPrice(value) {
+      return new Intl.NumberFormat('ru-RU').format(value) + ' ₸';
+    }
+
+    function encodeMessage(text) {
+      return encodeURIComponent(text).replace(/%20/g, '%20');
+    }
+
+    function getOptionText(select) {
+      const option = select.options[select.selectedIndex];
+      return option.dataset[currentLang] || option.textContent;
+    }
+
+    function updateOptionTexts() {
+      document.querySelectorAll('option').forEach((option) => {
+        option.textContent = option.dataset[currentLang] || option.textContent;
+      });
+    }
+
+    function updateStaticText() {
+      const t = translations[currentLang];
+      document.documentElement.lang = currentLang === 'kz' ? 'kk' : 'ru';
+      document.title = t.pageTitle;
+
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.dataset.i18n;
+        if (t[key]) element.textContent = t[key];
+      });
+
+      document.querySelectorAll('[data-i18n-aria]').forEach((element) => {
+        const key = element.dataset.i18nAria;
+        if (t[key]) element.setAttribute('aria-label', t[key]);
+      });
+
+      document.querySelectorAll('[data-placeholder-ru]').forEach((element) => {
+        element.placeholder = element.dataset[`placeholder${currentLang.charAt(0).toUpperCase() + currentLang.slice(1)}`] || element.placeholder;
+      });
+
+      const orderMessage = encodeMessage(t.helloOrder);
+      navWhatsapp.href = `https://wa.me/${phoneNumber}?text=${orderMessage}`;
+      floatingWhatsapp.href = `https://wa.me/${phoneNumber}?text=${orderMessage}`;
+    }
+
+    function calculatePrice() {
+      const t = translations[currentLang];
+      const base = Number(adType.value);
+      const multiplier = Number(size.value);
+      const designPrice = Number(design.value);
+      const installPrice = Number(install.value);
+      const dismantlingPrice = Number(dismantling.value);
+
+      const total = Math.round(base * multiplier + designPrice + installPrice + dismantlingPrice);
+      priceResult.textContent = formatPrice(total);
+
+      const text = `${t.calcIntro}\n${t.calcType}: ${getOptionText(adType)}\n${t.calcSizeMsg}: ${getOptionText(size)}\n${t.calcDesignMsg}: ${getOptionText(design)}\n${t.calcInstallMsg}: ${getOptionText(install)}\n${t.calcDismantlingMsg}: ${getOptionText(dismantling)}\n${t.calcTotal}: ${formatPrice(total)}`;
+      whatsappCalc.href = `https://wa.me/${phoneNumber}?text=${encodeMessage(text)}`;
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+    
